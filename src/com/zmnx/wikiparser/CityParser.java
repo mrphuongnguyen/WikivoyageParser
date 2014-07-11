@@ -17,7 +17,7 @@ import java.util.Stack;
 
 import com.zmnx.wikiparser.SpotParser;
 
-public class RegionList {
+public class CityParser {
 
 	public static void main(String[] args) {
 
@@ -33,15 +33,18 @@ public class RegionList {
 				if (input.compareTo("q") == 0)
 					break;
 
-				ArrayList<String> regionList = makeList("/wiki/" + input);
+//				ArrayList<String> regionList = makeList("/wiki/" + input);
+//
+//				if (regionList.size() != 0) {
+//					for (String URL : regionList) {
+//
+//						System.out.println("region : " + URL);
+//						docStack.push(URL);
+//					}
+//				}
+				
+				docStack.push("/wiki/" + input);
 
-				if (regionList.size() != 0) {
-					for (String URL : regionList) {
-
-						System.out.println("region : " + URL);
-						docStack.push(URL);
-					}
-				}
 
 				// TextFile
 				File file = new File(input + ".txt");
