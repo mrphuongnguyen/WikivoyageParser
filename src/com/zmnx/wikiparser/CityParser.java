@@ -47,7 +47,7 @@ public class CityParser {
 
 
 				// TextFile
-				File file = new File(input + ".txt");
+				File file = new File("./cities/" + input + ".txt");
 				FileWriter fw = new FileWriter(file.getAbsoluteFile());
 				BufferedWriter bw = new BufferedWriter(fw);
 
