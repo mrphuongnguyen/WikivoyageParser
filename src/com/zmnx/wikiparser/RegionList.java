@@ -33,17 +33,13 @@ public class RegionList {
 				if (input.compareTo("q") == 0)
 					break;
 
-				Elements regionElements = makeList("/wiki/" + input);
+				ArrayList<String> regionList = makeList("/wiki/" + input);
 
-				if (regionElements.size() != 0) {
-					for (Element e : regionElements) {
+				if (regionList.size() != 0) {
+					for (String URL : regionList) {
 
-						if (e.children().size() != 0) {
-							String URL = e.child(0).attr("href");
-
-							System.out.println("region : " + URL);
-							docStack.push(URL);
-						}
+						System.out.println("region : " + URL);
+						docStack.push(URL);
 					}
 				}
 
@@ -56,19 +52,14 @@ public class RegionList {
 				while (!docStack.empty()) {
 
 					String regionURL = docStack.pop();
-
-					Elements elements = makeList(regionURL);
+					ArrayList<String> elements = makeList(regionURL);
 
 					if (elements.size() != 0) {
 
-						for (Element e : elements) {
+						for (String URL : elements) {
 
-							if (e.children().size() != 0) {
-								String URL = e.child(0).attr("href");
-
-								System.out.println("region : " + URL);
-								docStack.push(URL);
-							}
+							System.out.println("region : " + URL);
+							docStack.push(URL);
 						}
 					}
 
@@ -99,7 +90,7 @@ public class RegionList {
 		}
 	}
 
-	public static Elements makeList(String relURL) throws IOException {
+	public static ArrayList<String> makeList(String relURL) throws IOException {
 
 		String url = "http://en.wikivoyage.org" + relURL;
 		System.out.println("Fetching " + url + "...");
@@ -107,46 +98,56 @@ public class RegionList {
 		Document doc = Jsoup.connect(url).get();
 
 		Elements regionElements = doc.select("#region_list");
-		Elements regionList = new Elements();
+		ArrayList<String> regionList = new ArrayList<String>();
 
-		for (Element e : regionElements) {
+		if (regionElements.size() != 0) {
+			
+			for (Element e : regionElements) {
 
-			Elements regions = e.getElementsByTag("b");
+				Elements regions = e.getElementsByTag("b");
 
-			for (Element e2 : regions) {
-				if (e2.children().size() != 0) {
-					String URL = e.child(0).attr("href");
-
-					System.out.println("region : " + URL);
-					regionList.add(e2);
+				for (Element e2 : regions) {
+					if (e2.children().size() != 0) {
+						String URL = e2.child(0).attr("href");
+												
+						if (URL.contains("/wiki/")) {
+							System.out.println("region : " + URL);
+							regionList.add(URL);
+						}
+					}
 				}
 			}
 		}
 
-		if (doc.select("#Districts").size() != 0) {
-			Element districtElement = doc.select("#Districts").get(0);
-			Elements siblingElements = districtElement.parent()
-					.siblingElements();
+		else {
 
-			for (Element e : siblingElements) {
+			if (doc.select("#Districts").size() != 0) {
+				Element districtElement = doc.select("#Districts").get(0);
+				Elements siblingElements = districtElement.parent()
+						.siblingElements();
 
-				Elements districtElements = e.getElementsByTag("b");
+				for (Element e : siblingElements) {
 
-				for (Element e2 : districtElements) {
-					Elements districts = e2.getElementsByAttribute("href");
+					Elements districtElements = e.getElementsByTag("b");
 
-					for (Element e3 : districts) {
-						
-						String district = e3.attr("href");
-						
-						if (district.contains("/wiki/"))
-							System.out.println(e3.attr("href"));
+					for (Element e2 : districtElements) {
+						Elements districts = e2.getElementsByAttribute("href");
+
+						for (Element e3 : districts) {
+
+							String district = e3.attr("href");
+
+							if (district.contains("/wiki/")) {
+								System.out.println("region : " + district);
+								regionList.add(district);
+							}
+						}
 					}
-				}
 
-				if (e.getElementById("Understand") != null) {
-					// System.out.println("Eat");
-					break;
+					if (e.getElementById("Understand") != null) {
+						// System.out.println("Eat");
+						break;
+					}
 				}
 			}
 		}

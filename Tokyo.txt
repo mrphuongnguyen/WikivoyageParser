@@ -45,7 +45,7 @@ Toshimaen
 Niwa-no-yu
 Hikarigaoka Park
 Karaoke and live stage
-Jujo-Ginza
+Jūjō-Ginza
 Nishiarai Daishi
 Tokyo Budokan
 Kiyosumi Garden
@@ -226,12 +226,10 @@ Isetan
 Keio
 Lumine
 Marui
-Mitsukoshi ALCOTT
 Odakyu
 Takashimaya
 Bookoff
 Books Kinokuniya
-Junkudo
 Bic Camera
 Yodobashi Camera
 Don Quijote
