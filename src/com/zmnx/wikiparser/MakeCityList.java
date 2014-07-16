@@ -21,6 +21,8 @@ import org.jsoup.select.Elements;
 
 public class MakeCityList {
 
+	public static String[] nations = { "South_Korea", "France", "USA" };
+
 	public static void main(String[] args) {
 
 		try {
@@ -29,9 +31,6 @@ public class MakeCityList {
 			String input = br.readLine();
 
 			if (input.compareTo("s") == 0) {
-
-				String[] nations = { "South_Korea", "France", "USA" };
-
 				for (int i = 0; i < nations.length; i++) {
 					Process process = Runtime
 							.getRuntime()
@@ -42,19 +41,24 @@ public class MakeCityList {
 					InputStreamReader isr = new InputStreamReader(is);
 					BufferedReader br2 = new BufferedReader(isr);
 					String line;
-					
-					System.out.println("Running phantomJS for " + nations[i] + "...");
-					System.out.println("===========================================");
-					
+
+					System.out.println("Running phantomJS for " + nations[i]
+							+ "...");
+					System.out
+							.println("===========================================");
+
 					while ((line = br2.readLine()) != null) {
 						System.out.println(line);
 					}
-					
+
 					// Wait for the process to complete and the images to be
 					// generated
 					process.waitFor();
-					System.out.println("\nExit phantomJS for " + nations[i] + "...\n");
+					System.out.println("\nExit phantomJS for " + nations[i]
+							+ "...\n");
 				}
+
+				parseHTML();
 			}
 		} catch (IOException e) {
 			System.out.println("error : " + e.toString());
@@ -63,19 +67,23 @@ public class MakeCityList {
 		}
 	}
 
-	public static void startParse() throws IOException {
+	public static void parseHTML() throws IOException {
 
-		File inputFile = new File("input.html");
-		Document doc = Jsoup.parse(inputFile, "UTF-8",
-				"https://en.wikivoyage.org/");
+		for (String nation : nations) {
 
-		Element citiesElement = doc.select("[id^=Cities]").first();
-		Elements citiesElements = citiesElement.parent().parent()
-				.select("ul > li > a");
+			File inputFile = new File(
+					"/Users/kangdongho/Dev/EclipseWorkspace/WikivoyageParser/HTML/"
+							+ nation + ".html");
+			Document doc = Jsoup.parse(inputFile, "UTF-8",
+					"https://en.wikivoyage.org/");
 
-		for (Element e : citiesElements) {
-			// System.out.println(e.attr("href"));
+			Element citiesElement = doc.select("[id^=Cities]").first();
+			Elements citiesElements = citiesElement.parent().parent()
+					.select("ul > li > a");
+
+			for (Element e : citiesElements) {
+				System.out.println(e.attr("href"));
+			}
 		}
-
 	}
 }

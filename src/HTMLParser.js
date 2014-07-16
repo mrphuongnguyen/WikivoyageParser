@@ -9,7 +9,8 @@ if (args.length === 1) {
   console.log('Try to pass some arguments when invoking this script!');
 } else {
  nation = args[1];
- console.log("nation : " + args[1]);
+ console.log("Document Name : " + args[1]);
+ console.log("\n");
 }
 
 // url from nation
@@ -25,7 +26,7 @@ page.open(url, function (status) {
     var fs = require('fs');
 
     try {
-    	fs.write("/Users/kangdongho/Dev/EclipseWorkspace/WikivoyageParser/" + nation + ".html", js.all[0].outerHTML);
+    	fs.write("/Users/kangdongho/Dev/EclipseWorkspace/WikivoyageParser/HTML/" + nation + ".html", js.all[0].outerHTML);
     } catch(e) {
     	console.log(e);
     }
