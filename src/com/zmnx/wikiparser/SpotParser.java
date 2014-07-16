@@ -25,12 +25,13 @@ public class SpotParser {
 
 		ArrayList<String> spotList = new ArrayList<String>();
 
-		if (doc.select("[id^=See").size() != 0) {
+		if (doc.select("[id^=See]").size() != 0) {
 			Element seeElement = doc.select("[id^=See]").get(0);
-			Elements siblingElements = seeElement.parent().siblingElements();
+			Element e = seeElement.parent();
 
-			for (Element e : siblingElements) {
+			while (true) {
 
+				e = e.nextElementSibling();
 				// System.out.println(e.html());
 				// System.out.println();
 
