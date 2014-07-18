@@ -1,5 +1,6 @@
 package com.zmnx.wikiparser;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,59 +11,72 @@ import org.jsoup.select.Elements;
 
 public class SpotParser {
 
-	public String docURL;
+	private String docName;
 
-	public SpotParser(String docURL) {
-		this.docURL = docURL;
+	public SpotParser(String docName) {
+		this.docName = docName;
 	}
 
 	public ArrayList<String> makeSpotList() throws IOException {
 
-		String url = docURL;
-		// System.out.println("Fetching " + url + "...");
+		File inputFile = new File("./html/" + docName + ".html");
+		Document doc = Jsoup.parse(inputFile, "UTF-8",
+				"https://en.wikivoyage.org/");
 
-		Document doc = Jsoup.connect(url).get();
+		System.out.println("makeSpotList for " + docName + "...");
+		System.out.println("===========================================");
 
 		ArrayList<String> spotList = new ArrayList<String>();
 
-		if (doc.select("[id^=See]").size() != 0) {
-			Element seeElement = doc.select("[id^=See]").get(0);
-			Element e = seeElement.parent();
+		Element seeElement = doc.select("[id^=See]").first();
+		Elements seeSpots;
 
-			while (true) {
+		if (seeElement != null) {
+			seeSpots = seeElement.parent().parent()
+					.select("[class^=fn org listing]");
 
-				e = e.nextElementSibling();
-				// System.out.println(e.html());
-				// System.out.println();
+			for (Element e : seeSpots) {
+				spotList.add(spotExtract(e));
+			}
+		}
 
-				if (e.getElementById("Eat") != null) {
-					// System.out.println("Eat");
-					break;
-				} else if (e.getElementById("Drink") != null) {
-					// System.out.println("Drink");
-					break;
-				} else if (e.getElementById("Sleep") != null) {
-					// System.out.println("Sleep");
-					break;
-				}
+		Element doElement = doc.select("[id^=Do]").first();
+		Elements doSpots;
 
-				Elements spots = e.select("[class=fn org listing-name]");
+		if (doElement != null) {
+			doSpots = doElement.parent().parent()
+					.select("[class^=fn org listing]");
 
-				for (Element e2 : spots) {
+			for (Element e : doSpots) {
+				spotList.add(spotExtract(e));
+			}
+		}
 
-					String spotTitle;
+		Element buyElement = doc.select("[id^=Buy]").first();
+		Elements buySpots;
 
-					if (e2.children().size() == 0)
-						spotTitle = e2.ownText();
-					else
-						spotTitle = e2.child(0).ownText();
+		if (buyElement != null) {
+			buySpots = buyElement.parent().parent()
+					.select("[class^=fn org listing]");
 
-					// System.out.println("spot : " + spotTitle);
-					spotList.add(spotTitle);
-				}
+			for (Element e : buySpots) {
+				spotList.add(spotExtract(e));
 			}
 		}
 
 		return spotList;
+	}
+
+	public String spotExtract(Element e) {
+		
+		String spot;
+		
+		if(e.select("b").size() != 0)
+			spot = e.select("b").first().ownText();
+		else
+			spot = e.ownText(); 
+		
+		//System.out.println(spot);
+		return spot;
 	}
 }
