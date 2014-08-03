@@ -33,7 +33,7 @@ public class WikivoyageParser {
 			// nation Doc Parsing
 			if (input.compareTo("s") == 0) {
 				for (int i = 0; i < nations.length; i++) {
-					PhantomJS.runPhantomJS(nations[i]);
+					PhantomJS.runPhantomJS(nations[i], "WikivoyageParser");
 				}
 
 				parseNationDoc();

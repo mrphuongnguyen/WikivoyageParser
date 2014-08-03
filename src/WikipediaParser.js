@@ -2,19 +2,18 @@
 var page = require('webpage').create();
 var system = require('system');
 var args = system.args;
-var docName;
+var url;
+var file;
 
 // input ars
 if (args.length === 1) {
   console.log('Try to pass some arguments when invoking this script!');
 } else {
- docName = args[1];
+ url = args[1];
+ file = args[2];
  console.log("Document Name : " + args[1]);
  console.log("\n");
 }
-
-// url from docName
-var url = 'http://en.wikivoyage.org/wiki/' + docName;
 
 // page open and HTML file output
 page.open(url, function (status) {
@@ -26,7 +25,7 @@ page.open(url, function (status) {
     var fs = require('fs');
 
     try {
-    	fs.write("./wikivoyageHtml/" + docName + ".html", js.all[0].outerHTML);
+    	fs.write("./wikipediaHtml/" + file + ".html", js.all[0].outerHTML);
     } catch(e) {
     	console.log(e);
     }

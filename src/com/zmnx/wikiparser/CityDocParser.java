@@ -35,7 +35,7 @@ public class CityDocParser {
 			while (!docStack.empty()) {
 
 				String docPath = docStack.pop();
-				PhantomJS.runPhantomJS(docPath);
+				PhantomJS.runPhantomJS(docPath, "WikivoyageParser");
 
 				ArrayList<String> districtElements = makeDistrictList(docPath);
 
@@ -72,7 +72,7 @@ public class CityDocParser {
 			bw.close();
 
 		} catch (IOException e) {
-			System.out.println("error : " + e.toString());
+			System.out.println("IOException : " + e.toString());
 		} catch (InterruptedException e) {
 			System.out.println("InterruptedException : " + e.toString());
 		}
