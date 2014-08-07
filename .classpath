@@ -2,14 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="/Users/kangdongho/Downloads/jsoup-1.7.3.jar"/>
-	<classpathentry kind="lib" path="/Users/kangdongho/Dev/GitRepository/minimal-json/com.eclipsesource.json/target/minimal-json-0.9.2-SNAPSHOT-javadoc.jar"/>
-	<classpathentry kind="lib" path="/Users/kangdongho/Dev/GitRepository/minimal-json/com.eclipsesource.json/target/minimal-json-0.9.2-SNAPSHOT-sources.jar"/>
-	<classpathentry kind="lib" path="/Users/kangdongho/Dev/GitRepository/minimal-json/com.eclipsesource.json/target/minimal-json-0.9.2-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/Users/kangdongho/Dev/GitRepository/minimal-json/com.eclipsesource.json.performancetest/target/minimal-json-performancetest-0.9.2-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/Users/kangdongho/Dev/JavaLibraries/jsoup-1.7.3-javadoc.jar"/>
-	<classpathentry kind="lib" path="/Users/kangdongho/Dev/JavaLibraries/jsoup-1.7.3-sources.jar"/>
-	<classpathentry kind="lib" path="/Users/kangdongho/Dev/JavaLibraries/jsoup-1.7.3.jar"/>
 	<classpathentry kind="lib" path="/Users/kangdongho/Dev/EclipseWorkspace/WikivoyageParser/javalib/jsoup-1.7.3-javadoc.jar"/>
 	<classpathentry kind="lib" path="/Users/kangdongho/Dev/EclipseWorkspace/WikivoyageParser/javalib/jsoup-1.7.3-sources.jar"/>
 	<classpathentry kind="lib" path="/Users/kangdongho/Dev/EclipseWorkspace/WikivoyageParser/javalib/jsoup-1.7.3.jar"/>
@@ -17,5 +9,12 @@
 	<classpathentry kind="lib" path="/Users/kangdongho/Dev/EclipseWorkspace/WikivoyageParser/javalib/minimal-json-0.9.2-SNAPSHOT-sources.jar"/>
 	<classpathentry kind="lib" path="/Users/kangdongho/Dev/EclipseWorkspace/WikivoyageParser/javalib/minimal-json-0.9.2-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="/Users/kangdongho/Dev/EclipseWorkspace/WikivoyageParser/javalib/minimal-json-performancetest-0.9.2-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/Users/kangdongho/Dev/EclipseWorkspace/TripDocentSpotList/javalib/jsoup-1.7.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Users/kangdongho/Dev/EclipseWorkspace/TripDocentSpotList/javalib/jsoup-1.7.3-sources.jar"/>
+	<classpathentry kind="lib" path="/Users/kangdongho/Dev/EclipseWorkspace/TripDocentSpotList/javalib/jsoup-1.7.3.jar"/>
+	<classpathentry kind="lib" path="/Users/kangdongho/Dev/EclipseWorkspace/TripDocentSpotList/javalib/minimal-json-0.9.2-SNAPSHOT-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Users/kangdongho/Dev/EclipseWorkspace/TripDocentSpotList/javalib/minimal-json-0.9.2-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="lib" path="/Users/kangdongho/Dev/EclipseWorkspace/TripDocentSpotList/javalib/minimal-json-0.9.2-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/Users/kangdongho/Dev/EclipseWorkspace/TripDocentSpotList/javalib/minimal-json-performancetest-0.9.2-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
